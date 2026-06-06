@@ -313,8 +313,8 @@
     ]
 
 - NumbersOrdinalPluralOnes: [
-      "zerowe", "pierwsze", "drugie", "trzecie", "czwarte", "piąte", "szóste", "siódme", "ósme", "dziewiąte",
-      "dziesiąte", "jedenaste", "dwunaste", "trzynaste", "czternaste", "piętnaste", "szesnaste",
+      "zerowa", "pierwsza", "druga", "trzecia", "czwarta", "piąta", "szósta", "siódma", "ósma", "dziewiąta",
+      "dziesiąta", "jedenasta", "dwunasta", "trzynasta", "czternasta", "piętnaste", "szesnaste",
       "siedemnaste", "osiemnaste", "dziewiętnaste"
     ]
 

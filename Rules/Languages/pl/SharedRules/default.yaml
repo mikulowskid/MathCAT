@@ -121,10 +121,10 @@
   - test:
       if: "$Verbosity!='Terse'"
       then: [t: ""]    # phrase("'the' root of x")
-  - t: "pierwiastek"
+  - t: "pierwiastek z"
   - test:
       if: "$Verbosity!='Terse'"
-      then: [t: "z"]    # phrase("the root 'of' x")
+      then: [t: "pierwiastek z"]    # phrase("the root 'of' x")
   - x: "*[1]"
   - pause: short
   - test:

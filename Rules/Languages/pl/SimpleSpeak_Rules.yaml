@@ -35,7 +35,7 @@
   - test:
       if: "$Verbosity!='Terse'"
       then: [t: ""]    # phrase('the' square root of x)
-  - t: "pierwiastek kwadratowy"      # phrase(the 'square root' of x)
+  - t: "pierwiastek kwadratowy z"      # phrase(the 'square root' of x)
   - test:
       if: "$Verbosity!='Terse'"
       then: [t: "z"]   # phrase(the square root 'of' x)
@@ -44,7 +44,7 @@
   - test:
       if: "IsNode(*[1], 'leaf') or $Impairment != 'Blindness'"
       then: [pause: short]
-      else: [t: "end of root ", pause: short]  # phrase(start the square root of x 'end of root')
+      else: [t: "koniec pierwiastka ", pause: short]  # phrase(start the square root of x 'end of root')
 
 - name: default
   tag: root
@@ -57,9 +57,9 @@
       if: "*[2][self::m:mn and not(contains(., '.'))]"
       then_test:
       - if: "*[2][.='2']"
-        then: [t: "pierwiastek kwadratowy"]        # phrase(the 'square root' of x)
+        then: [t: "pierwiastek kwadratowy z"]        # phrase(the 'square root' of x)
       - else_if: "*[2][.='3']"
-        then: [t: "pierwiastek sześcienny"]        # phrase(the 'cube root' of x)
+        then: [t: "pierwiastek sześcienny z"]        # phrase(the 'cube root' of x)
       - else: [x: "ToOrdinal(*[2])", t: "źródło"]      # phrase(the square 'root' of 25)
       else:
       - test:
@@ -68,7 +68,7 @@
           - x: "*[2]"
           - pronounce: [{text: "-th"}, {ipa: "θ"}, {sapi5: "th"}, {eloquence: "T"}]
           else: [x: "*[2]"]
-      - t: "pierwiastek"        # phrase(the square 'root' of)
+      - t: "pierwiastek z"        # phrase(the square 'root' of)
   - test:
       if: "$Verbosity!='Terse'"
       then: [t: "z"]        # phrase(the square root 'of' x)
@@ -76,7 +76,7 @@
   - test:
       if: "IsNode(*[1], 'leaf') or $Impairment != 'Blindness'"
       then: [pause: short]
-      else: [t: "end of root ", pause: short]      # phrase(start the fifth root of x 'end of root')
+      else: [t: "koniec pierwiastka", pause: short]      # phrase(start the fifth root of x 'end of root')
 
 # Fraction rules
 # Mixed numbers mostly "just work" because the invisible char reads as "and" and other parts read properly on their own
@@ -248,7 +248,7 @@
   - "    ]"
   replace:
   - x: "*[1]"
-  - t: "podniesiony do"      # phrase(15 'raised to the' second power equals 225)
+  - t: "podniesiony do potęgi"      # phrase(15 'raised to the' second power equals 225)
   - x: "*[2]"
   - pause: short
   - test:
@@ -264,9 +264,9 @@
   match: "."
   replace:
   - x: "*[1]"
-  - t: "podniesiony do"      # phrase(15 'raised to the' second power equals 225)
+  - t: "podniesiony do potęgi"      # phrase(15 'raised to the' second power equals 225)
   - x: "*[2]"
-  - t: "potęgi"      # phrase(15 raised to the second 'power' equals 225)
+  - t: ""      # phrase(15 raised to the second 'power' equals 225)
   - pause: short
 
 #

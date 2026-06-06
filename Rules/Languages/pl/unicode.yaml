@@ -85,15 +85,15 @@
         if: $SpeechStyle = 'ClearSpeak' or $SpeechStyle = 'SimpleSpeak'
         then_test:
             if: "$Verbosity='Terse'"
-            then: [t: "otwarty"]                	#  0x28	(en: 'open', google translation)
-            else: [t: "otwarty nawias"]         	#  0x28	(en: 'open paren', google translation)
+            then: [t: "nawias otwarty"]                	#  0x28	(en: 'open', google translation)
+            else: [t: "nawias otwarty"]         	#  0x28	(en: 'open paren', google translation)
         else: [t: "lewy nawias"]                	#  0x28	(en: 'left paren', google translation)
  - ")":                                         	#  0x29
     - test:
         if: $SpeechStyle = 'ClearSpeak' or $SpeechStyle = 'SimpleSpeak'
         then_test:
             if: "$Verbosity='Terse'"
-            then: [t: "zamknięty"]                	#  0x29	(en: 'close', google translation)
+            then: [t: "nawias zamknięty"]                	#  0x29	(en: 'close', google translation)
             else: [t: "nawias zamknięty"]          	#  0x29	(en: 'close paren', google translation)
         else: [t: "prawy nawias"]               	#  0x29	(en: 'right paren', google translation)
 
@@ -364,7 +364,7 @@
         - test:
             if: "$Verbosity!='Terse' and not(ancestor::*[self::m:set])"	#  "the set x is an element of ..." sounds bad"
             then: [t: "jest"]                   	# 	(en: 'is', google translation)
-        - t: "element"                          	# 	(en: 'an element of', google translation)
+        - t: "elementem"                          	# 	(en: 'an element of', google translation)
         # Several options for speaking elements in ClearSpeak -- they split between being inside a set or not and then the option
         else_test:
             if: "../../self::m:set or ../../../self::m:set"	#  inside a set
@@ -372,19 +372,19 @@
               - if: $ClearSpeak_SetMemberSymbol = 'Auto' or $ClearSpeak_SetMemberSymbol = 'In'
                 then: [t: "w"]                  	# 	(en: 'in', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Member'
-                then: [t: "członek"]            	# 	(en: 'member of', google translation)
+                then: [t: "elementem"]            	# 	(en: 'member of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Element'
-                then: [t: "element"]            	# 	(en: 'element of', google translation)
-              - else: [t: "należący do"]        	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'belonging to', google translation)
+                then: [t: "elementem"]            	# 	(en: 'element of', google translation)
+              - else: [t: "należy do"]        	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'belonging to', google translation)
             else_test:
               - if: $ClearSpeak_SetMemberSymbol = 'Auto' or $ClearSpeak_SetMemberSymbol = 'Member'
-                then: [t: "jest członkiem"]     	# 	(en: 'is a member of', google translation)
+                then: [t: "jest elementem"]     	# 	(en: 'is a member of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Element'
                 then: [t: "jest elementem"]     	# 	(en: 'is an element of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'In'
-                then: [t: "jest w"]             	# 	(en: 'is in', google translation)
+                then: [t: "jest zawarty w"]             	# 	(en: 'is in', google translation)
               - else: [t: "należy do"]          	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'belongs to', google translation)
- - "∉":                                         	#  0x2209
+ - "∉":                                          	#  0x2209
     # rule is identical to 0x2208
      - test:
         if: "$SpeechStyle != 'ClearSpeak'"
@@ -392,25 +392,25 @@
         - test: 
             if: "$Verbosity!='Terse'"
             then: [t: "jest"]                   	# 	(en: 'is', google translation)
-        - t: "nie element"                      	# 	(en: 'not an element of', google translation)
+        - t: "nie jest elementem"                      	# 	(en: 'not an element of', google translation)
         # Several options for speaking elements in ClearSpeak -- they split between being inside a set or not and then the option
         else_test:
             if: "../../self::m:set or ../../../self::m:set"	#  inside a set
             then_test:
               - if: $ClearSpeak_SetMemberSymbol = 'Auto' or $ClearSpeak_SetMemberSymbol = 'In'
-                then: [t: "nie w"]              	# 	(en: 'not in', google translation)
+                then: [t: "nie zawiera się w"]              	# 	(en: 'not in', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Member'
-                then: [t: "nie członek"]        	# 	(en: 'not member of', google translation)
+                then: [t: "nie jest elementem"]        	# 	(en: 'not member of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Element'
-                then: [t: "nie element"]        	# 	(en: 'not element of', google translation)
-              - else: [t: "nie należące do"]    	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'not belonging to', google translation)
+                then: [t: "nie jest elementem"]        	# 	(en: 'not element of', translation)
+              - else: [t: "nie należy do"]    	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'not belonging to', google translation)
             else_test:
               - if: $ClearSpeak_SetMemberSymbol = 'Auto' or $ClearSpeak_SetMemberSymbol = 'Member'
-                then: [t: "nie jest członkiem"] 	# 	(en: 'is not a member of', google translation)
+                then: [t: "nie jest elementem"] 	# 	(en: 'is not a member of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Element'
                 then: [t: "nie jest elementem"] 	# 	(en: 'is not an element of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'In'
-                then: [t: "nie ma w"]           	# 	(en: 'is not in', google translation)
+                then: [t: "nie zawiera się w"]           	# 	(en: 'is not in', google translation)
               - else: [t: "nie należy do"]      	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'does not belong to', google translation)
  - "∊":                                         	#  0x220a
      - test:
@@ -419,7 +419,7 @@
         - test: 
             if: "$Verbosity!='Terse' and not(ancestor::*[self::m:set])"	#  "the set x is an element of ..." sounds bad"
             then: [t: "jest"]                   	# 	(en: 'is', google translation)
-        - t: "element"                          	# 	(en: 'an element of', google translation)
+        - t: "elementem"                          	# 	(en: 'an element of', google translation)
         # Several options for speaking elements in ClearSpeak -- they split between being inside a set or not and then the option
         else_test:
             if: "../../self::m:set or ../../../self::m:set"	#  inside a set
@@ -427,30 +427,30 @@
               - if: $ClearSpeak_SetMemberSymbol = 'Auto' or $ClearSpeak_SetMemberSymbol = 'In'
                 then: [t: "w"]                  	# 	(en: 'in', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Member'
-                then: [t: "członek"]            	# 	(en: 'member of', google translation)
+                then: [t: "element"]            	# 	(en: 'member of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Element'
                 then: [t: "element"]            	# 	(en: 'element of', google translation)
-              - else: [t: "należący do"]        	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'belonging to', google translation)
+              - else: [t: "należącym do"]        	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'belonging to', google translation)
             else_test:
               - if: $ClearSpeak_SetMemberSymbol = 'Auto' or $ClearSpeak_SetMemberSymbol = 'Member'
-                then: [t: "jest członkiem"]     	# 	(en: 'is a member of', google translation)
+                then: [t: "jest elementem"]     	# 	(en: 'is a member of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'Element'
                 then: [t: "jest elementem"]     	# 	(en: 'is an element of', google translation)
               - else_if: $ClearSpeak_SetMemberSymbol = 'In'
-                then: [t: "jest w"]             	# 	(en: 'is in', google translation)
+                then: [t: "jest zawarty w"]             	# 	(en: 'is in', google translation)
               - else: [t: "należy do"]          	#  $ClearSpeak_SetMemberSymbol = 'Belongs'	(en: 'belongs to', google translation)
  - "∏": [t: "produkt"]                          	#  0x220f	(en: 'product', google translation)
  - "∐": [t: "produkt"]                          	#  0x2210	(en: 'co-product', google translation)
  - "∑": [t: "suma"]                             	#  0x2211	(en: 'sum', google translation)
  - "−": [t: "minus"]                            	#  0x2212	(google translation)
  - "∓": [t: "minus lub plus"]                   	#  0x2213	(en: 'minus or plus', google translation)
- - "∗": [t: "czasy"]                            	#  0x2217	(en: 'times', google translation)
- - "∘": [t: "skomponowane z"]                   	#  0x2218	(en: 'composed with', google translation)
+ - "∗": [t: "operator gwiazdki"]                            	#  0x2217	(en: 'times', google translation)
+ - "∘": [t: "operator kółka"]                   	#  0x2218	(en: 'composed with', google translation)
  - "√":                                         	#  0x221a
      - test: 
          if: "$Verbosity!='Terse'"
-         then: [t: "the"]
-     - t: "pierwiastek kwadratowy"              	# 	(en: 'square root of', google translation)
+         then: [t: "z"]
+     - t: "pierwiastek kwadratowy z"              	# 	(en: 'square root of', google translation)
  - "∝":                                         	#  0x221d
      - test: 
          if: "$Verbosity!='Terse'"
@@ -460,45 +460,45 @@
  - "∟": [t: "prosty kąt"]                       	#  0x221f	(en: 'right angle', google translation)
  - "∠": [t: "kąt"]                              	#  0x2220	(en: 'angle', google translation)
  - "∡": [t: "zmierzony kąt"]                    	#  0x2221	(en: 'measured angle', google translation)
- - "∣": [t: "podział"]                          	#  0x2223	(en: 'divides', google translation)
+ - "∣": [t: "dzieli"]                          	#  0x2223	(en: 'divides', google translation)
  - "∤": [t: "nie dzieli"]                       	#  0x2224	(en: 'does not divide', google translation)
  - "∥":                                         	#  0x2225
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
-     - t: "równolegle do"                       	# 	(en: 'parallel to', google translation)
+     - t: "równoległy do"                       	# 	(en: 'parallel to', google translation)
  - "∦":                                         	#  0x2226
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
-     - t: "nie równolegle do"                   	# 	(en: 'not parallel to', google translation)
- - "∧": [t: "i"]                                	#  0x2227	(en: 'and', google translation)
- - "∨": [t: "lub"]                              	#  0x2228	(en: 'or', google translation)
+     - t: "nie równoległy do"                   	# 	(en: 'not parallel to', google translation)
+ - "∧": [t: "logiczne i"]                                	#  0x2227	(en: 'and', google translation)
+ - "∨": [t: "logiczne lub"]                              	#  0x2228	(en: 'or', google translation)
  - "∩": [t: "przecięcie"]                       	#  0x2229	(en: 'intersection', google translation)
- - "∪": [t: "unia"]                             	#  0x222a	(en: 'union', google translation)
+ - "∪": [t: "część wspulna"]                             	#  0x222a	(en: 'union', google translation)
  - "∫": [t: "całka"]                            	#  0x222b	(en: 'integral', google translation)
  - "∬": [t: "podwójna całka"]                   	#  0x222c	(en: 'double integral', google translation)
- - "∭": [t: "triple integral"]                  	#  0x222d	(google translation)
- - "∮": [t: "integral konturu"]                 	#  0x222e	(en: 'contour integral', google translation)
+ - "∭": [t: "potrujna całka"]                  	#  0x222d	(google translation)
+ - "∮": [t: "całka okrężna"]                 	#  0x222e	(en: 'contour integral', google translation)
  - "∶":                                         	#  0x2236
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
      - t: "do"                                  	# 	(en: 'to', google translation)
  - "∷": [t: "jak"]                              	#  0x2237	(en: 'as', google translation)
- - "∼": [t: "zmienia się z"]                    	#  0x223c	(en: 'varies with', google translation)
+ - "∼": [t: "podobne do"]                    	#  0x223c	(en: 'varies with', google translation)
  - "∽": [t: "odwrócona tylde"]                  	#  0x223d	(en: 'reversed tilde', google translation)
  - "∾":                                         	#  0x223e
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
-     - t: "najbardziej pozytywny"               	# 	(en: 'most positive', google translation)
- - "∿": [t: "fala sinusoidalna"]                	#  0x223f	(en: 'sine wave', google translation)
+     - t: "najbardziej podobny"               	# 	(en: 'most positive', google translation)
+ - "∿": [t: "falka"]                	#  0x223f	(en: 'sine wave', google translation)
  - "≠":                                         	#  0x2260
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
-     - t: "nie równe"                           	# 	(en: 'not equal to', google translation)
+     - t: "różne od"                           	# 	(en: 'not equal to', google translation)
  - "≡":                                         	#  0x2261
      - test: 
          if: "$Verbosity!='Terse'"
@@ -508,43 +508,43 @@
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
-     - t:  "less than or equal to"
+     - t:  "mniejsze lub równe od"
  - "≥":                                         	#  0x2265
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
      - t: "większe lub równe"                   	# 	(en: 'greater than or equal to', google translation)
- - "≦": [t: "mniej niż ponad równe"]            	#  0x2266	(en: 'less than over equal to', google translation)
+ - "≦": [t: "mniejsze niż ponad równe"]            	#  0x2266	(en: 'less than over equal to', google translation)
  - "≧": [t: "większy niż ponad równy"]          	#  0x2267	(en: 'greater than over equal to', google translation)
- - "≺": [t: "poprzednie"]                       	#  0x227a	(en: 'precedes', google translation)
- - "≻": [t: "udaje się"]                        	#  0x227b	(en: 'succeeds', google translation)
+ - "≺": [t: "poprzedza"]                       	#  0x227a	(en: 'precedes', google translation)
+ - "≻": [t: "następuje"]                        	#  0x227b	(en: 'succeeds', google translation)
  - "⊂":                                         	#  0x2282
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is a', google translation)
-     - t: "podzbiór"                            	# 	(en: 'subset of', google translation)
+     - t: "podzbiorem"                            	# 	(en: 'subset of', google translation)
  - "⊃":                                         	#  0x2283
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is a', google translation)
-     - t: "superset of"                         	# 	(google translation)
+     - t: "nadzbiorem zbioru"                         	# 	(google translation)
  - "⊄":                                         	#  0x2284
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
-     - t: "nie podzbiór"                        	# 	(en: 'not a subset of', google translation)
+     - t: "nie jest podzbiorem"                        	# 	(en: 'not a subset of', google translation)
  - "⊅":                                         	#  0x2285
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is', google translation)
-     - t: "nie jest to zastępca"                	# 	(en: 'not a superset of', google translation)
+     - t: "nie jest rzeczywistym podzbiorem"                	# 	(en: 'not a superset of', google translation)
  - "⊆":                                         	#  0x2286
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is a', google translation)
-     - t: "podzbiór lub równy"                  	# 	(en: 'subset of or equal to', google translation)
+     - t: "podzbiorem lub równym"                  	# 	(en: 'subset of or equal to', google translation)
  - "⊇":                                         	#  0x2287
      - test: 
          if: "$Verbosity!='Terse'"
          then: [t: "jest"]                      	# 	(en: 'is a', google translation)
-     - t: "superset lub równy"                  	# 	(en: 'superset of or equal to', google translation)
+     - t: "nadzbiorem lub równym"                  	# 	(en: 'superset of or equal to', google translation)

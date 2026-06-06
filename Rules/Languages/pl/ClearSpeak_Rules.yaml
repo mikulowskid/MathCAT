@@ -383,7 +383,7 @@
   - "    ]"
   replace:
   - x: "*[1]"
-  - t: "podniesiony do"      # phrase(x 'raised to the' second power)
+  - t: "do potęgi"      # phrase(x 'raised to the' second power)
   - x: "*[2]"
   - t: "potęgi"      # phrase(x raised to the second 'power')
 
@@ -404,9 +404,9 @@
   - "     ]"
   replace:
   - x: "*[1]"
-  - t: "podniesiony do"      # phrase(x 'raised to the' second power)
+  - t: "podniesiony do potęgi"      # phrase(x 'raised to the' second power)
   - x: "*[2]"
-  - t: "potęgi"      # phrase(x raised to the second 'power')
+  - t: ""      # phrase(x raised to the second 'power')
 
 - # [xxx] var^n
   name: nested-var-squared-or-cubed
@@ -427,9 +427,9 @@
   - "      ]"
   replace:
   - x: "*[1]"
-  - t: "podniesiony do"      # phrase(x 'raised to the' second power)
+  - t: "podniesiony do potęgi"      # phrase(x 'raised to the' second power)
   - x: "*[2]"
-  - t: "potęgi"      # phrase(x raised to the second 'power')
+  - t: ""      # phrase(x raised to the second 'power')
 
 - # -[xxx] var^n
   name: nested-negative-var-squared-or-cubed
@@ -452,9 +452,9 @@
   - "      ]"
   replace:
   - x: "*[1]"
-  - t: "podniesiony do"      # phrase(x 'raised to the' second power)
+  - t: "podniesiony do potęgi"      # phrase(x 'raised to the' second power)
   - x: "*[2]"
-  - t: "potęgi"      # phrase(x raised to the second 'power')
+  - t: ""      # phrase(x raised to the second 'power')
 
 - name: default-exponent-power
   tag: power
@@ -473,9 +473,9 @@
   match: "."
   replace:
   - x: "*[1]"
-  - t: "podniesiony do"      # phrase(x 'raised to the' second power)
+  - t: "podniesiony do potęgi"      # phrase(x 'raised to the' second power)
   - x: "*[2]"
-  - t: "potęgi"      # phrase(x raised to the second 'power')
+  - t: ""      # phrase(x raised to the second 'power')
 
 #
 # Some rules on mrows
